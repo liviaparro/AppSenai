@@ -1,17 +1,17 @@
-from datetime import datetime
-
 import flet
 from flet import ThemeMode, Text, TextField, Button, OutlinedButton, Column, CrossAxisAlignment, ElevatedButton, \
-    TextButton
+    TextButton, Container, FontWeight, Colors
+from flet.controls import page
+from flet.controls.border_radius import horizontal
+from datetime import datetime
 
 
 def main(page: flet.Page):
     # Configurações
     page.title = "Primeiro APP"
-    page.theme_mode = ThemeMode.LIGHT # ou ThemeMode.Light
-    page.window.widht = 400
+    page.theme_mode = ThemeMode.LIGHT  # ou ThemeMode.Light
+    page.window.width = 400
     page.window.height = 700
-
 
     # Funções
 
@@ -46,31 +46,68 @@ def main(page: flet.Page):
     btn_verificar = ElevatedButton("Verificar", on_click=verificar_parimpar)
     btn_calcular = TextButton("Calcular idade", on_click=calcular_idade)
 
-
-
     # Construção da tela
 
     page.add(
         Column(
             [
-                input_nome,
-                input_sobrenome,
-                btn_salvar,
-                text,
-                input_numero,
-                btn_verificar,
-                text_parimpar,
-                input_data_nascimento,
-                btn_calcular,
-                text_idade
+                Container(
+                    Column(
+                        [
+                            Text("Atividade 1", weight=FontWeight.BOLD, size=24),
+                            input_nome,
+                            input_sobrenome,
+                            btn_salvar,
+                            text
+                        ],
+                        horizontal_alignment=CrossAxisAlignment.CENTER,
+                    ),
+                    bgcolor=Colors.BLUE_200,
+                    padding=15,
+                    border_radius=10,
+                    width=400,
+
+                ),
+                Container(
+                    Column(
+                        [
+                            Text("Atividade 2", weight=FontWeight.BOLD, size=24),
+                            input_numero,
+                            btn_verificar,
+                            text_parimpar
+
+                        ],
+
+                        horizontal_alignment=CrossAxisAlignment.CENTER,
+                    ),
+                    bgcolor=Colors.BLUE_200,
+                    padding=15,
+                    border_radius=10,
+                    width=400,
+
+                ),
+                Container(
+                    Column(
+                        [
+                            Text("Atividade 3", weight=FontWeight.BOLD, size=24),
+                            input_data_nascimento,
+                            btn_calcular,
+                            text_idade
+
+                        ],
+                        horizontal_alignment=CrossAxisAlignment.CENTER,
+                    ),
+                    bgcolor=Colors.BLUE_200,
+                    padding=15,
+                    border_radius=10,
+                    width=400
+
+                ),
 
             ],
             width=400,
             horizontal_alignment=CrossAxisAlignment.CENTER
         )
     )
-
-
-
 
 flet.run(main)
